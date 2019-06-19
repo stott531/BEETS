@@ -53,9 +53,13 @@ OBJECTS_DIR   = ./
 ####### Files
 
 SOURCES       = ../BEETS/main.cpp \
-		../BEETS/mainwindow.cpp moc_mainwindow.cpp
+		../BEETS/mainwindow.cpp \
+		../BEETS/testingSuite/Test.cpp \
+		../BEETS/testingSuite/testSuite.cpp moc_mainwindow.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
+		Test.o \
+		testSuite.o \
 		moc_mainwindow.o
 DIST          = ../../../Qt/5.12.3/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/common/unix.conf \
@@ -230,6 +234,7 @@ DIST          = ../../../Qt/5.12.3/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/spec_post.prf \
+		../BEETS/.qmake.stash \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/default_pre.prf \
@@ -249,8 +254,12 @@ DIST          = ../../../Qt/5.12.3/gcc_64/mkspecs/features/spec_pre.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/exceptions.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/yacc.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/lex.prf \
-		../BEETS/BEETS.pro ../BEETS/mainwindow.h ../BEETS/main.cpp \
-		../BEETS/mainwindow.cpp
+		../BEETS/BEETS.pro ../BEETS/mainwindow.h \
+		../BEETS/testingSuite/Test.h \
+		../BEETS/testingSuite/testSuite.h ../BEETS/main.cpp \
+		../BEETS/mainwindow.cpp \
+		../BEETS/testingSuite/Test.cpp \
+		../BEETS/testingSuite/testSuite.cpp
 QMAKE_TARGET  = BEETS
 DESTDIR       = 
 TARGET        = BEETS
@@ -435,6 +444,7 @@ Makefile: ../BEETS/BEETS.pro ../../../Qt/5.12.3/gcc_64/mkspecs/linux-g++/qmake.c
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/qt_config.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/toolchain.prf \
 		../../../Qt/5.12.3/gcc_64/mkspecs/features/default_pre.prf \
@@ -632,6 +642,7 @@ Makefile: ../BEETS/BEETS.pro ../../../Qt/5.12.3/gcc_64/mkspecs/linux-g++/qmake.c
 ../../../Qt/5.12.3/gcc_64/mkspecs/features/qt_config.prf:
 ../../../Qt/5.12.3/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../../Qt/5.12.3/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../../Qt/5.12.3/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../../Qt/5.12.3/gcc_64/mkspecs/features/toolchain.prf:
 ../../../Qt/5.12.3/gcc_64/mkspecs/features/default_pre.prf:
@@ -670,8 +681,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.12.3/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../BEETS/mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../BEETS/main.cpp ../BEETS/mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../BEETS/mainwindow.h ../BEETS/testingSuite/Test.h ../BEETS/testingSuite/testSuite.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../BEETS/main.cpp ../BEETS/mainwindow.cpp ../BEETS/testingSuite/Test.cpp ../BEETS/testingSuite/testSuite.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../BEETS/mainwindow.ui $(DISTDIR)/
 
 
@@ -1064,6 +1075,13 @@ mainwindow.o: ../BEETS/mainwindow.cpp ../BEETS/mainwindow.h \
 		../../../Qt/5.12.3/gcc_64/include/QtGui/qicon.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../BEETS/mainwindow.cpp
+
+Test.o: ../BEETS/testingSuite/Test.cpp ../BEETS/testingSuite/Test.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Test.o ../BEETS/testingSuite/Test.cpp
+
+testSuite.o: ../BEETS/testingSuite/testSuite.cpp ../BEETS/testingSuite/testSuite.h \
+		../BEETS/testingSuite/Test.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o testSuite.o ../BEETS/testingSuite/testSuite.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

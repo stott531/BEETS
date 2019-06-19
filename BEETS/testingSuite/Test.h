@@ -15,6 +15,7 @@ public:
     Test(const string &name, const string &cmdLineArgs,
             const string &stdIn, const string &stdOut, const string &answer);
 
+    Test() = default;
     //runs the test
     bool runTest();
 

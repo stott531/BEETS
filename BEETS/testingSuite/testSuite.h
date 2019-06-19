@@ -8,9 +8,12 @@
 #include <map>
 
 #include "Test.h"
+#include <QMap>
 
 using std::string;
 using std::map;
+
+typedef Test TestingClass;
 
 
 class testSuite {
@@ -35,14 +38,14 @@ public:
     void removeTest(const string& name);
 
     //change the a given test
-    void updateTest(const string& name, const Test& newTest);
+    void updateTest(const string& name, const TestingClass& newTest);
 
 
 
 private:
     string name;
     string path_to_exe;
-    map<string, Test> tests;
+    QMap<string, TestingClass> tests;
 };
 
 

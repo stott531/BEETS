@@ -4,14 +4,16 @@
 
 #include "testSuite.h"
 
+#include <iostream>
+
 testSuite::testSuite(const string &name, const string &pathToExe) : name(name), path_to_exe(pathToExe)
 {
-    this->tests = map<string, Test>();
+    this->tests = QMap<string, TestingClass>();
 }
 
-testSuite::testSuite(const string &JSON_file) : name(name)
+testSuite::testSuite(const string &JSON_file)
 {
-
+    std::cout << JSON_file;
 }
 
 void testSuite::run_tests()
@@ -31,7 +33,7 @@ void testSuite::addTest(const string &name, const Test &newTest)
 
 void testSuite::removeTest(const string &name)
 {
-    this->tests.erase(name);
+    this->tests.remove(name);
 }
 
 void testSuite::updateTest(const string &name, const Test &newTest)
