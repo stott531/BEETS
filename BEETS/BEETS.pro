@@ -28,15 +28,18 @@ SOURCES += \
         main.cpp \
         ui_elements/mainwindow.cpp \
         testingSuite/Test.cpp \
-        testingSuite/testSuite.cpp
+        testingSuite/testSuite.cpp \
+        ui_elements/startingwindow.cpp
 
 HEADERS += \
         ui_elements/mainwindow.h \
         testingSuite/Test.h \
-        testingSuite/testSuite.h
+        testingSuite/testSuite.h \
+        ui_elements/startingwindow.h
 
 FORMS += \
-        ui_elements/mainwindow.ui
+        ui_elements/mainwindow.ui \
+        ui_elements/startingwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
