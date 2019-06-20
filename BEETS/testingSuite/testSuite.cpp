@@ -21,7 +21,7 @@ void testSuite::run_tests()
 
 }
 
-void testSuite::serialize()
+void testSuite::serialize(const string& directoryPath)
 {
 
 }

@@ -29,7 +29,7 @@ public:
     void run_tests();
 
     //serializes the test suite to a JSON file
-    void serialize();
+    void serialize(const string& directoryPath);
 
     //adds a test to the suite
     void addTest(const string& name, const Test& newTest);

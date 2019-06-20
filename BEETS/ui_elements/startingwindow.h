@@ -15,6 +15,11 @@ public:
     explicit startingWindow(QWidget *parent = nullptr);
     ~startingWindow();
 
+private slots:
+    void on_removeSuite_2_clicked();
+
+    void on_addSuite_clicked();
+
 private:
     Ui::startingWindow *ui;
 };
