@@ -27,21 +27,18 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         ui_elements/createnewsuite.cpp \
-        ui_elements/mainwindow.cpp \
         testingSuite/Test.cpp \
         testingSuite/testSuite.cpp \
         ui_elements/startingwindow.cpp
 
 HEADERS += \
         ui_elements/createnewsuite.h \
-        ui_elements/mainwindow.h \
         testingSuite/Test.h \
         testingSuite/testSuite.h \
         ui_elements/startingwindow.h
 
 FORMS += \
         ui_elements/createnewsuite.ui \
-        ui_elements/mainwindow.ui \
         ui_elements/startingwindow.ui
 
 # Default rules for deployment.
