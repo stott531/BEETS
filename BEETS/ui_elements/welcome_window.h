@@ -26,6 +26,8 @@ private slots:
 
     void on_cancel_2_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::welcome_window *ui;
 };

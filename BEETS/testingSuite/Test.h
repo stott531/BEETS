@@ -5,22 +5,28 @@
 #ifndef BEETS_TEST_H
 #define BEETS_TEST_H
 
-#include <string>
+#include <QString>
+#include <QStringList>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QFile>
 
-using std::string;
 
 class Test {
 public:
     //constructs from initializations
-    Test(const string &name, const string &cmdLineArgs,
-            const string &stdIn, const string &stdOut, const string &answer);
+    Test(const QString &name, const QString &cmdLineArgs,
+            const QString &stdIn, const QString &stdOut, const QString &answer);
+
+    QJsonValue toJsonValue();
 
     Test() = default;
+    QString getName();
     //runs the test
     bool runTest();
 
 private:
-    string name, cmd_line_args, std_in, std_out, answer;
+    QString name, cmd_line_args, std_in, std_out, answer;
 };
 
 

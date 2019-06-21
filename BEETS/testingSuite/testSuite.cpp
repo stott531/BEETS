@@ -6,14 +6,14 @@
 
 #include <iostream>
 
-testSuite::testSuite(const string &name, const string &pathToExe) : name(name), path_to_exe(pathToExe)
+testSuite::testSuite(const QString &name, const QString &pathToExe) : name(name), path_to_exe(pathToExe)
 {
     this->tests = QMap<string, TestingClass>();
 }
 
-testSuite::testSuite(const string &JSON_file)
+testSuite::testSuite(const QString& fileName)
 {
-    std::cout << JSON_file;
+
 }
 
 void testSuite::run_tests()
@@ -21,9 +21,22 @@ void testSuite::run_tests()
 
 }
 
-void testSuite::serialize(const string& directoryPath)
+void testSuite::serialize()
 {
+    QJsonObject json;
+    json.insert("name", QJsonValue(this->name));
+    json.insert("path_to_exe", QJsonValue(this->path_to_exe));
 
+    for (auto test : this->tests) {
+        json.insert(test.getName(), test.toJsonValue());
+    }
+
+    QJsonDocument file(json);
+    QString fileName ="../etc/" + this->name + ".JSON";
+    QFile newFile(fileName);
+    newFile.open(QIODevice::WriteOnly);
+    newFile.write(file.toJson());
+    newFile.close();
 }
 
 void testSuite::addTest(const string &name, const Test &newTest)
