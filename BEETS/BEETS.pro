@@ -26,20 +26,18 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        ui_elements/createnewsuite.cpp \
         testingSuite/Test.cpp \
         testingSuite/testSuite.cpp \
-        ui_elements/startingwindow.cpp
+        ui_elements/welcome_window.cpp \
 
 HEADERS += \
-        ui_elements/createnewsuite.h \
         testingSuite/Test.h \
         testingSuite/testSuite.h \
-        ui_elements/startingwindow.h
+        ui_elements/welcome_window.h \
 
 FORMS += \
-        ui_elements/createnewsuite.ui \
-        ui_elements/startingwindow.ui
+        ui_elements/welcome_window.ui \
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
