@@ -5,15 +5,12 @@
 #ifndef BEETS_TESTSUITE_H
 #define BEETS_TESTSUITE_H
 
-#include <map>
 
 #include "Test.h"
 #include <QMap>
 #include <QJsonObject>
 #include <QJsonDocument>
 
-using std::string;
-using std::map;
 
 typedef Test TestingClass;
 
@@ -34,20 +31,20 @@ public:
     void serialize();
 
     //adds a test to the suite
-    void addTest(const string& name, const Test& newTest);
+    void addTest(const QString& name, const Test& newTest);
 
     //remove a test from the suite
-    void removeTest(const string& name);
+    void removeTest(const QString& name);
 
     //change the a given test
-    void updateTest(const string& name, const TestingClass& newTest);
+    void updateTest(const QString& name, const TestingClass& newTest);
 
 
 
 private:
     QString name;
     QString path_to_exe;
-    QMap<string, TestingClass> tests;
+    QMap<QString, TestingClass> tests;
 };
 
 

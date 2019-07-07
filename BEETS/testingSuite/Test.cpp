@@ -20,8 +20,7 @@ QJsonValue Test::toJsonValue()
 {
     QStringList members;
     members << cmd_line_args << std_in << std_out << answer;
-    QJsonArray arr;
-    arr.fromStringList(members);
+    QJsonArray arr = QJsonArray::fromStringList(members);
     return QJsonValue(arr);
 
 }

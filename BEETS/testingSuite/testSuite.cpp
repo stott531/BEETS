@@ -8,12 +8,37 @@
 
 testSuite::testSuite(const QString &name, const QString &pathToExe) : name(name), path_to_exe(pathToExe)
 {
-    this->tests = QMap<string, TestingClass>();
+    this->tests = QMap<QString, TestingClass>();
 }
 
-testSuite::testSuite(const QString& fileName)
+testSuite::testSuite(const QString& test_name)
 {
+    QString fileName = "../etc/" + test_name + ".JSON";
+    QFile json_file(fileName);
+    json_file.open(QIODevice::ReadOnly);
+    QString raw_file = json_file.readAll();
+    json_file.close();
 
+    QJsonDocument json_doc = QJsonDocument::fromJson(raw_file.toUtf8());
+    QJsonObject obj = json_doc.object();
+
+    for (QString var : obj.keys()) {
+
+        if (var == "name"){
+            this->name = obj["name"].toString();
+        }
+        else if (var == "path_to_exe") {
+            this->path_to_exe = obj["path_to_exe"].toString();
+        }
+        else {
+            auto temp = obj[var].toArray();
+            this->tests[var] = Test(var, temp[0].toString(),
+                                        temp[1].toString(),
+                                        temp[2].toString(),
+                                        temp[3].toString()
+            );
+        }
+    }
 }
 
 void testSuite::run_tests()
@@ -39,17 +64,17 @@ void testSuite::serialize()
     newFile.close();
 }
 
-void testSuite::addTest(const string &name, const Test &newTest)
+void testSuite::addTest(const QString &name, const Test &newTest)
 {
     this->tests[name] = newTest;
 }
 
-void testSuite::removeTest(const string &name)
+void testSuite::removeTest(const QString &name)
 {
     this->tests.remove(name);
 }
 
-void testSuite::updateTest(const string &name, const Test &newTest)
+void testSuite::updateTest(const QString &name, const Test &newTest)
 {
     this->tests[name] = newTest;
 }
