@@ -27,7 +27,7 @@ void welcome_window::on_add_suite_clicked()
 
 void welcome_window::on_exit_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    exit(0);
 }
 
 void welcome_window::on_pushButton_2_clicked()
@@ -51,4 +51,13 @@ void welcome_window::on_pushButton_clicked()
     QString path = ui->source_exe->text();
     testSuite newTest(name, path);
     newTest.serialize();
+}
+
+void welcome_window::on_continue_2_clicked()
+{
+    //creates a dynamiclly allocated testSuite with unique ptr so memory leaks are non-issue
+    auto suite = std::make_unique<testSuite>(this->ui->comboBox->currentText());
+    main_window* w = new main_window(nullptr, std::move(suite));
+    this->close();
+    w->show();
 }

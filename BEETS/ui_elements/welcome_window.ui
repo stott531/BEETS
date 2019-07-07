@@ -44,14 +44,14 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="exit">
+       <widget class="QPushButton" name="remove_suite">
         <property name="text">
          <string>Remove Test Suite</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_2">
+       <widget class="QPushButton" name="exit">
         <property name="text">
          <string>Exit</string>
         </property>
@@ -198,7 +198,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton">
+       <widget class="QPushButton" name="save_cont">
         <property name="text">
          <string>Save &amp; Continue</string>
         </property>

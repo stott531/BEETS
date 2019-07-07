@@ -2,6 +2,7 @@
 #define WELCOME_WINDOW_H
 
 #include <QDialog>
+#include "ui_elements/main_window.h"
 
 namespace Ui {
 class welcome_window;
@@ -27,6 +28,10 @@ private slots:
     void on_cancel_2_clicked();
 
     void on_pushButton_clicked();
+
+    void on_continue_2_clicked();
+
+    void on_comboBox_activated(const QString &arg1);
 
 private:
     Ui::welcome_window *ui;

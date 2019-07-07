@@ -4,8 +4,6 @@
 
 #include "testSuite.h"
 
-#include <iostream>
-
 testSuite::testSuite(const QString &name, const QString &pathToExe) : name(name), path_to_exe(pathToExe)
 {
     //initialize an empty map
@@ -64,13 +62,17 @@ void testSuite::run_tests()
 void testSuite::serialize()
 {
     QJsonObject json;
+
+    //inserts the name and path from the testSuite into the JSON
     json.insert("name", QJsonValue(this->name));
     json.insert("path_to_exe", QJsonValue(this->path_to_exe));
 
+    //insert each test into the JSON
     for (auto test : this->tests) {
         json.insert(test.getName(), test.toJsonValue());
     }
 
+    //create file, writet the JSON to the file, and close
     QJsonDocument file(json);
     QString fileName ="../etc/" + this->name + ".JSON";
     QFile newFile(fileName);

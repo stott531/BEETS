@@ -10,6 +10,7 @@
 #include <QMap>
 #include <QJsonObject>
 #include <QJsonDocument>
+#include <memory>
 
 
 typedef Test TestingClass;
