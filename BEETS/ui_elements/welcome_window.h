@@ -21,17 +21,13 @@ private slots:
 
     void on_exit_clicked();
 
-    void on_pushButton_2_clicked();
-
     void on_cancel_clicked();
 
     void on_cancel_2_clicked();
 
-    void on_pushButton_clicked();
-
     void on_continue_2_clicked();
 
-    void on_comboBox_activated(const QString &arg1);
+    void on_save_cont_clicked();
 
 private:
     Ui::welcome_window *ui;

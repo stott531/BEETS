@@ -11,9 +11,29 @@ Test::Test(const QString &name, const QString &cmdLineArgs,
 
 }
 
-QString Test::getName()
+const QString& Test::getName() const
 {
     return this->name;
+}
+
+const QString& Test::getCmd_line_args() const
+{
+    return this->cmd_line_args;
+}
+
+const QString& Test::getStd_in() const
+{
+    return this->std_in;
+}
+
+const QString& Test::getStd_out() const
+{
+    return this->std_out;
+}
+
+const QString& Test::getAnswer() const
+{
+    return this->answer;
 }
 
 QJsonValue Test::toJsonValue()

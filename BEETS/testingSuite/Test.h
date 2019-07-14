@@ -21,9 +21,17 @@ public:
     QJsonValue toJsonValue();
 
     Test() = default;
-    QString getName();
+
+    //getters
+    const QString& getName() const;
+    const QString& getCmd_line_args() const;
+    const QString& getStd_in() const;
+    const QString& getStd_out() const;
+    const QString& getAnswer() const;
+
     //runs the test
     bool runTest();
+
 
 private:
     QString name, cmd_line_args, std_in, std_out, answer;

@@ -40,6 +40,9 @@ public:
     //change the a given test
     void updateTest(const QString& name, const TestingClass& newTest);
 
+    //get the testing map
+    const QMap<QString, TestingClass>& getTestMap() const;
+
 
 
 private:
