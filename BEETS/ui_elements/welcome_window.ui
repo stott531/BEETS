@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(85, 87, 83);</string>
+    <string notr="true"/>
    </property>
    <widget class="QWidget" name="welcome">
     <widget class="QWidget" name="verticalLayoutWidget">
