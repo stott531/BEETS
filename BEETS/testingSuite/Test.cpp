@@ -36,6 +36,11 @@ const QString& Test::getAnswer() const
     return this->answer;
 }
 
+const bool Test::getPassedTest() const
+{
+    return this->passedTest;
+}
+
 QJsonValue Test::toJsonValue()
 {
     QStringList members;
@@ -45,7 +50,15 @@ QJsonValue Test::toJsonValue()
 
 }
 
-bool Test::runTest()
+void Test::runTest(QString path)
 {
-    return false;
+    auto testProcess = new QProcess();
+    testProcess->start(path, cmd_line_args.split(' '));
+    testProcess->write(this->std_in.toUtf8(), this->std_in.size());
+
+    testProcess->waitForReadyRead();
+    auto returned_output = testProcess->readAllStandardOutput();
+
+    returned_output == answer ? passedTest = true: passedTest = false;
+
 }

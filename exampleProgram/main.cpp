@@ -27,8 +27,8 @@ int main(int argc, char** argv)
     }
     else
     {
-        std::cout << "Invalid input";
+        std::cout << "Invalid input \n";
     }
-    
+
     return 0;
 }

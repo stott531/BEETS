@@ -10,6 +10,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include <QFile>
+#include <QProcess>
 
 
 class Test {
@@ -28,13 +29,15 @@ public:
     const QString& getStd_in() const;
     const QString& getStd_out() const;
     const QString& getAnswer() const;
+    const bool getPassedTest() const;
 
     //runs the test
-    bool runTest();
+    void runTest(QString path);
 
 
 private:
     QString name, cmd_line_args, std_in, std_out, answer;
+    bool passedTest;
 };
 
 
