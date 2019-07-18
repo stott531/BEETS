@@ -1,0 +1,16 @@
+{
+    "Frodo": [
+        "Sam",
+        "Aragorn",
+        "Gandalf",
+        "Legolas"
+    ],
+    "Paul": [
+        "Jessica",
+        "Leto",
+        "Stilgar",
+        "Muadib"
+    ],
+    "name": "foo_name",
+    "path_to_exe": "bar.exe"
+}

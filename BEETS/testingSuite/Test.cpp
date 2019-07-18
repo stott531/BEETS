@@ -3,15 +3,67 @@
 //
 
 #include "Test.h"
+#include <QDebug>
 
-Test::Test(const std::string &name, const std::string &cmdLineArgs,
-        const std::string &stdIn, const std::string &stdOut, const std::string &answer)
+Test::Test(const QString &name, const QString &cmdLineArgs,
+        const QString &stdIn, const QString &stdOut, const QString &answer)
         : name(name), cmd_line_args(cmdLineArgs), std_in(stdIn), std_out(stdOut), answer(answer)
 {
 
 }
 
-bool Test::runTest()
+const QString& Test::getName() const
 {
-    return false;
+    return this->name;
+}
+
+const QString& Test::getCmd_line_args() const
+{
+    return this->cmd_line_args;
+}
+
+const QString& Test::getStd_in() const
+{
+    return this->std_in;
+}
+
+const QString& Test::getStd_out() const
+{
+    return this->std_out;
+}
+
+const QString& Test::getAnswer() const
+{
+    return this->answer;
+}
+
+const bool Test::getPassedTest() const
+{
+    return this->passedTest;
+}
+
+QJsonValue Test::toJsonValue()
+{
+    QStringList members;
+    members << cmd_line_args << std_in << std_out << answer;
+    QJsonArray arr = QJsonArray::fromStringList(members);
+    return QJsonValue(arr);
+
+}
+
+void Test::runTest(QString path)
+{
+    qDebug() << path;
+    auto testProcess = new QProcess();
+    testProcess->setReadChannelMode(QProcess::SeparateChannels);
+    testProcess->start(path, cmd_line_args.split(' '));
+    QApplication::processEvents();
+    auto debug_var = testProcess->write(this->std_in.toUtf8(), this->std_in.size());
+    testProcess->closeWriteChannel();
+
+    testProcess->waitForReadyRead();
+    auto returned_output = testProcess->readAllStandardOutput();
+
+    returned_output == answer ? passedTest = true: passedTest = false;
+
 }

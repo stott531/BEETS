@@ -1,0 +1,10 @@
+{
+    "name": "example",
+    "path_to_exe": "/home/stott/Programming/BEETS/exampleProgram/cmake-build-debug/exampleProgram",
+    "test1": [
+        "circle",
+        "5",
+        "",
+        "15.708"
+    ]
+}
