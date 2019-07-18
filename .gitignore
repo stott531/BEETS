@@ -1,4 +1,5 @@
 build/*
 cmake-build-debug
 exampleProgram/.idea
-BEETS/BEETS.user.pro
+BEETS/BEETS.pro.user
+
