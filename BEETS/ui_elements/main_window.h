@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "testingSuite/testSuite.h"
 #include <QListWidgetItem>
+#include <QInputDialog>
 
 namespace Ui {
 class main_window;
@@ -36,6 +37,8 @@ private slots:
     void on_actionSave_and_Close_triggered();
 
     void on_fileDialog_clicked();
+
+    void on_actionChange_Executable_Path_triggered();
 
 private:
     Ui::main_window *ui;

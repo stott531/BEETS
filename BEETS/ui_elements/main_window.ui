@@ -347,6 +347,8 @@ Arguments</string>
     <property name="title">
      <string>Settings</string>
     </property>
+    <addaction name="separator"/>
+    <addaction name="actionChange_Executable_Path"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
@@ -382,6 +384,11 @@ Arguments</string>
   <action name="actionOpen_Other_Test_Suite_2">
    <property name="text">
     <string>Open Other Test Suite</string>
+   </property>
+  </action>
+  <action name="actionChange_Executable_Path">
+   <property name="text">
+    <string>Change Executable Path</string>
    </property>
   </action>
  </widget>

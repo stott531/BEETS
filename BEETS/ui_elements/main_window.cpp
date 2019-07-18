@@ -105,3 +105,8 @@ void main_window::on_actionSave_and_Close_triggered()
     this->statusBar()->showMessage("Saving...", 2000);
     this->suite->serialize();
 }
+
+void main_window::on_actionChange_Executable_Path_triggered()
+{
+    bool ok;
+}

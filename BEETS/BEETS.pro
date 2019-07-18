@@ -34,11 +34,11 @@ SOURCES += \
 HEADERS += \
         testingSuite/Test.h \
         testingSuite/testSuite.h \
-    ui_elements/main_window.h \
+        ui_elements/main_window.h \
         ui_elements/welcome_window.h \
 
 FORMS += \
-    ui_elements/main_window.ui \
+        ui_elements/main_window.ui \
         ui_elements/welcome_window.ui \
 
 
