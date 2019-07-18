@@ -35,6 +35,8 @@ private slots:
 
     void on_actionSave_and_Close_triggered();
 
+    void on_fileDialog_clicked();
+
 private:
     Ui::main_window *ui;
 

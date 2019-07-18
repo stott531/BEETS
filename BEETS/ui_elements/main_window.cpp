@@ -24,8 +24,6 @@ void main_window::on_createTest_clicked()
     //clear text boxes beforehand
     ui->nameLineEdit_4->clear();
     ui->cmd_lin_argsLineEdit_4->clear();
-    ui->stdinLineEdit_4->clear();
-    ui->stdoutLineEdit_4->clear();
     ui->answerLineEdit_4->clear();
 
     //display the widget
@@ -42,7 +40,6 @@ void main_window::on_testList_itemDoubleClicked(QListWidgetItem *item)
     ui->nameLineEdit->setText(this->currentTest.getName());
     ui->cmd_lin_argsLineEdit->setText(this->currentTest.getCmd_line_args());
     ui->stdinLineEdit->setText(this->currentTest.getStd_in());
-    ui->stdoutLineEdit->setText(this->currentTest.getStd_out());
     ui->answerLineEdit->setText(this->currentTest.getAnswer());
 
     //display our work
@@ -63,7 +60,7 @@ void main_window::on_saveTest_clicked()
     suite->updateTest(name, Test(name,
                                  ui->cmd_lin_argsLineEdit->text(),
                                  ui->stdinLineEdit->text(),
-                                 ui->stdoutLineEdit->text(),
+                                 "",
                                  ui->answerLineEdit->text()));
 
     ui->testList->takeItem(ui->testList->currentRow());
@@ -76,7 +73,7 @@ void main_window::on_saveTest_4_clicked()
     suite->addTest(ui->nameLineEdit_4->text(), Test(ui->nameLineEdit_4->text(),
                                                      ui->cmd_lin_argsLineEdit_4->text(),
                                                      ui->stdinLineEdit_4->text(),
-                                                     ui->stdoutLineEdit_4->text(),
+                                                     "",
                                                      ui->answerLineEdit_4->text()));
     ui->testList->addItem(ui->nameLineEdit_4->text());
     ui->editTestPane->setCurrentWidget(ui->Welcome);
@@ -84,6 +81,7 @@ void main_window::on_saveTest_4_clicked()
 
 void main_window::on_runTests_clicked()
 {
+    this->statusBar()->showMessage("Running Tests...", 2000);
     this->suite->run_tests();
     int row = 0;
     for (const auto& iter : this->suite->getTestMap().values()) {
@@ -96,13 +94,14 @@ void main_window::on_runTests_clicked()
 }
 
 
-
 void main_window::on_actionSave_triggered()
 {
+    this->statusBar()->showMessage("Saving...", 2000);
     this->suite->serialize();
 }
 
 void main_window::on_actionSave_and_Close_triggered()
 {
+    this->statusBar()->showMessage("Saving...", 2000);
     this->suite->serialize();
 }

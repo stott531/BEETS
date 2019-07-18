@@ -11,6 +11,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include <memory>
+#include <QMessageBox>
 
 
 typedef Test TestingClass;

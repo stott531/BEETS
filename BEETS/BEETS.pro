@@ -28,7 +28,7 @@ SOURCES += \
         main.cpp \
         testingSuite/Test.cpp \
         testingSuite/testSuite.cpp \
-    ui_elements/main_window.cpp \
+        ui_elements/main_window.cpp \
         ui_elements/welcome_window.cpp \
 
 HEADERS += \

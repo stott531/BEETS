@@ -17,8 +17,7 @@
 class Test {
 public:
     //constructs from initializations
-    Test(const QString &name, const QString &cmdLineArgs,
-            const QString &stdIn, const QString &stdOut, const QString &answer);
+    Test(const QString &name, const QString &cmdLineArgs, const QString &stdIn, const QString &stdOut, const QString &answer);
 
     QJsonValue toJsonValue();
 
@@ -30,7 +29,7 @@ public:
     const QString& getStd_in() const;
     const QString& getStd_out() const;
     const QString& getAnswer() const;
-    const bool getPassedTest() const;
+    bool getPassedTest() const;
 
     //runs the test
     void runTest(QString path);

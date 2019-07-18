@@ -2,6 +2,8 @@
 #define WELCOME_WINDOW_H
 
 #include <QDialog>
+#include <QDir>
+#include <QFileDialog>
 #include "ui_elements/main_window.h"
 
 namespace Ui {
@@ -28,6 +30,8 @@ private slots:
     void on_continue_2_clicked();
 
     void on_save_cont_clicked();
+
+    void on_toolButton_clicked();
 
 private:
     Ui::welcome_window *ui;
