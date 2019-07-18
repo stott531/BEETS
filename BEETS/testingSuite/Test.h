@@ -11,6 +11,7 @@
 #include <QJsonArray>
 #include <QFile>
 #include <QProcess>
+#include <QApplication>
 
 
 class Test {

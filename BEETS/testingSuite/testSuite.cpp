@@ -56,8 +56,8 @@ testSuite::testSuite(const QString& test_name)
 
 void testSuite::run_tests()
 {
-    for(auto& iter : this->tests.values()) {
-        iter.runTest(this->path_to_exe);
+    for(auto& iter : this->tests.keys()) {
+        this->tests[iter].runTest(this->path_to_exe);
     }
 }
 

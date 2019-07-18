@@ -3,6 +3,7 @@
 //
 
 #include "Test.h"
+#include <QDebug>
 
 Test::Test(const QString &name, const QString &cmdLineArgs,
         const QString &stdIn, const QString &stdOut, const QString &answer)
@@ -52,9 +53,13 @@ QJsonValue Test::toJsonValue()
 
 void Test::runTest(QString path)
 {
+    qDebug() << path;
     auto testProcess = new QProcess();
+    testProcess->setReadChannelMode(QProcess::SeparateChannels);
     testProcess->start(path, cmd_line_args.split(' '));
-    testProcess->write(this->std_in.toUtf8(), this->std_in.size());
+    QApplication::processEvents();
+    auto debug_var = testProcess->write(this->std_in.toUtf8(), this->std_in.size());
+    testProcess->closeWriteChannel();
 
     testProcess->waitForReadyRead();
     auto returned_output = testProcess->readAllStandardOutput();
