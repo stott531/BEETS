@@ -1,0 +1,21 @@
+# Last updated by stott
+# 7/17/2019
+
+
+###############################TODO###############################
+GUI
+	Implement FileDialogs as means to pick exe
+	Add status bar to indicate status of tests
+	Add way to change the exe path and test suite name
+	Remove stdout field for creating new tests
+	Add a stop button for the tests
+	Add feature to view input and output of a test
+		when double clicked
+	
+
+Back-End
+	Implement exceptions for cases of timeout, file not
+		found, etc.
+	Run tests on seperate thread so that GUI doesn't freeze
+
+Configure Unit Testing
