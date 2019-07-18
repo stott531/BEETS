@@ -3,11 +3,9 @@
 //
 
 #include "Test.h"
-#include <QDebug>
 
-Test::Test(const QString &name, const QString &cmdLineArgs,
-        const QString &stdIn, const QString &stdOut, const QString &answer)
-        : name(name), cmd_line_args(cmdLineArgs), std_in(stdIn), std_out(stdOut), answer(answer)
+Test::Test(const QString &name, const QString &cmdLineArgs, const QString &stdIn, const QString &answer)
+        : name(name), cmd_line_args(cmdLineArgs), std_in(stdIn), answer(answer)
 {
 
 }
@@ -37,7 +35,7 @@ const QString& Test::getAnswer() const
     return this->answer;
 }
 
-const bool Test::getPassedTest() const
+bool Test::getPassedTest() const
 {
     return this->passedTest;
 }
@@ -48,22 +46,26 @@ QJsonValue Test::toJsonValue()
     members << cmd_line_args << std_in << std_out << answer;
     QJsonArray arr = QJsonArray::fromStringList(members);
     return QJsonValue(arr);
-
 }
 
 void Test::runTest(QString path)
 {
-    qDebug() << path;
+    //create a new process
     auto testProcess = new QProcess();
     testProcess->setReadChannelMode(QProcess::SeparateChannels);
+
+    //start the process with the given arguments
     testProcess->start(path, cmd_line_args.split(' '));
+
+    //wait for program to be ready to accept stdin
     QApplication::processEvents();
-    auto debug_var = testProcess->write(this->std_in.toUtf8(), this->std_in.size());
+    testProcess->write(this->std_in.toUtf8(), this->std_in.size());
     testProcess->closeWriteChannel();
 
+    //wait for program to process stdin
     testProcess->waitForReadyRead();
-    auto returned_output = testProcess->readAllStandardOutput();
+    this->std_out = testProcess->readAllStandardOutput();
 
-    returned_output == answer ? passedTest = true: passedTest = false;
-
+    //learn how ternary operators
+    this->std_out == this->answer ? passedTest = true: passedTest = false;
 }
