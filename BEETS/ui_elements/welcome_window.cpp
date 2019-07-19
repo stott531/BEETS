@@ -12,6 +12,8 @@ welcome_window::welcome_window(QWidget *parent) :
     files.replaceInStrings(".JSON","");
     ui->comboBox->addItems(files);
     ui->comboBox_2->addItems(files);
+
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 welcome_window::~welcome_window()
