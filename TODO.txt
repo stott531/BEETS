@@ -5,7 +5,6 @@
 ###############################TODO###############################
 GUI
 	Implement FileDialogs as means to pick exe
-	Add status bar to indicate status of tests
 	Add a stop button for the tests
 	Add feature to view input and output of a test
 		when double clicked

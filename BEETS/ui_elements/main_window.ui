@@ -314,7 +314,19 @@ Arguments</string>
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="testResults"/>
+        <widget class="QTableWidget" name="testResults">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="cornerButtonEnabled">
+          <bool>false</bool>
+         </property>
+         <property name="columnCount">
+          <number>2</number>
+         </property>
+         <column/>
+         <column/>
+        </widget>
        </item>
       </layout>
      </widget>

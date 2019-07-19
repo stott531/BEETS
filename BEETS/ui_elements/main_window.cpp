@@ -12,6 +12,8 @@ main_window::main_window(QWidget *parent, std::unique_ptr<testSuite> p_suite) :
         ui->testList->addItem(iter);
     }
     ui->editTestPane->setCurrentWidget(ui->Welcome);
+    ui->testResults->setHorizontalHeaderLabels(QStringList() << "Test" << "Result");
+    ui->testResults->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 main_window::~main_window()
@@ -83,14 +85,25 @@ void main_window::on_runTests_clicked()
 {
     this->statusBar()->showMessage("Running Tests...", 2000);
     this->suite->run_tests();
-    int row = 0;
+    int row = 0, totalPassed = 0;
+
+    ui->testResults->setRowCount(this->suite->getTestMap().size());
+    ui->testResults->setColumnCount(2);
+
     for (const auto& iter : this->suite->getTestMap().values()) {
+
         auto nameItem = new QTableWidgetItem(iter.getName());
         ui->testResults->setItem(row, 0, nameItem);
 
         auto passStatus = new QTableWidgetItem(iter.getPassedTest());
         ui->testResults->setItem(row, 1, passStatus);
+
+        if(iter.getPassedTest() == true) totalPassed++;
+        row++;
     }
+    this->ui->statusbar->showMessage("Passed "+QString::number(totalPassed)
+                                     +"/"+QString::number(this->suite->getTestMap().size())
+                                     +" Test Cases");
 }
 
 
