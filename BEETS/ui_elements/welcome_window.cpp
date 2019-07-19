@@ -66,5 +66,6 @@ void welcome_window::on_exit_clicked()
 
 void welcome_window::on_toolButton_clicked()
 {
-
+    QString fileName = QFileDialog::getSaveFileName(this, "Target Executable");
+    this->ui->source_exe->setText(fileName);
 }

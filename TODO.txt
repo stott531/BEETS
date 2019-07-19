@@ -4,11 +4,9 @@
 
 ###############################TODO###############################
 GUI
-	Implement FileDialogs as means to pick exe
 	Add a stop button for the tests
 	Add feature to view input and output of a test
 		when double clicked
-	Add icons for the buttons
 	
 
 Back-End
