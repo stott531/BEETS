@@ -16,6 +16,5 @@ Back-End
 	Implement exceptions for cases of timeout, file not
 		found, etc.
 	Run tests on seperate thread so that GUI doesn't freeze
-	Patch bug where new test is defualt of welcome window
 
 Configure Unit Testing
