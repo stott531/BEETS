@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "testingSuite/testSuite.h"
+#include "welcome_window.h"
 #include <QListWidgetItem>
 #include <QInputDialog>
 
@@ -35,8 +36,6 @@ private slots:
     void on_actionSave_triggered();
 
     void on_actionSave_and_Close_triggered();
-
-    void on_fileDialog_clicked();
 
     void on_actionChange_Executable_Path_triggered();
 

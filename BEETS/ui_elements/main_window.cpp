@@ -108,5 +108,13 @@ void main_window::on_actionSave_and_Close_triggered()
 
 void main_window::on_actionChange_Executable_Path_triggered()
 {
-    bool ok;
+    bool okFile = false;
+    QString newPath;
+    do {
+        newPath = QInputDialog::getText(this, "Change Path", "New Path:");
+        QFile::exists(newPath) ? okFile = true : QMessageBox::critical(this, "File Not Found", "Please check your path and try again");
+
+    } while(okFile == false);
+
+    this->suite->setPath_to_exe(newPath);
 }

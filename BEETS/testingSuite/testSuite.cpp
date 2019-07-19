@@ -98,6 +98,12 @@ void testSuite::updateTest(const QString &name, const Test &newTest)
     this->tests[name] = newTest;
 }
 
-const QMap<QString, TestingClass>& testSuite::getTestMap() const{
+const QMap<QString, TestingClass>& testSuite::getTestMap() const
+{
     return this->tests;
+}
+
+void testSuite::setPath_to_exe(const QString& newPath)
+{
+    this->path_to_exe = newPath;
 }

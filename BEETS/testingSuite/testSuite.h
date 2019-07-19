@@ -44,6 +44,9 @@ public:
     //get the testing map
     const QMap<QString, TestingClass>& getTestMap() const;
 
+    //set the executble path
+    void setPath_to_exe(const QString& newPath);
+
 
 
 private:
