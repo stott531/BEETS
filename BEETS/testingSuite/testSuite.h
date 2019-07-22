@@ -12,9 +12,8 @@
 #include <QJsonDocument>
 #include <memory>
 #include <QMessageBox>
-
-
-typedef Test TestingClass;
+#include <QtConcurrent/QtConcurrentMap>
+#include <functional>
 
 
 class testSuite {
@@ -39,20 +38,24 @@ public:
     void removeTest(const QString& name);
 
     //change the a given test
-    void updateTest(const QString& name, const TestingClass& newTest);
+    void updateTest(const QString& name, const Test& newTest);
 
     //get the testing map
-    const QMap<QString, TestingClass>& getTestMap() const;
+    const QMap<QString, Test>& getTestMap() const;
 
     //set the executble path
     void setPath_to_exe(const QString& newPath);
+
+    static void runTestStatic(QString path, Test curTest);
+
+    Test getTestAt(const QString& requestedTest);
 
 
 
 private:
     QString name;
     QString path_to_exe;
-    QMap<QString, TestingClass> tests;
+    QMap<QString, Test> tests;
 };
 
 

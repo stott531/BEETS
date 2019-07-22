@@ -40,6 +40,11 @@ bool Test::getPassedTest() const
     return this->passedTest;
 }
 
+void Test::set_path(const QString& path)
+{
+    this->path_to_exe = path;
+}
+
 QJsonValue Test::toJsonValue()
 {
     QStringList members;
@@ -48,14 +53,14 @@ QJsonValue Test::toJsonValue()
     return QJsonValue(arr);
 }
 
-void Test::runTest(QString path)
+int Test::runTest()
 {
     //create a new process
     auto testProcess = new QProcess();
     testProcess->setReadChannelMode(QProcess::SeparateChannels);
 
     //start the process with the given arguments
-    testProcess->start(path, cmd_line_args.split(' '));
+    testProcess->start(this->path_to_exe, cmd_line_args.split(' '));
 
     //wait for program to be ready to accept stdin
     QApplication::processEvents();
@@ -68,4 +73,6 @@ void Test::runTest(QString path)
 
     //learn how ternary operators
     this->std_out == this->answer ? passedTest = true: passedTest = false;
+
+    return 0;
 }

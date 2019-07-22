@@ -26,6 +26,7 @@ void main_window::on_createTest_clicked()
     //clear text boxes beforehand
     ui->nameLineEdit_4->clear();
     ui->cmd_lin_argsLineEdit_4->clear();
+    ui->stdinLineEdit_4->clear();
     ui->answerLineEdit_4->clear();
 
     //display the widget
@@ -95,7 +96,17 @@ void main_window::on_runTests_clicked()
         auto nameItem = new QTableWidgetItem(iter.getName());
         ui->testResults->setItem(row, 0, nameItem);
 
-        auto passStatus = new QTableWidgetItem(iter.getPassedTest());
+        QString icon, status;
+        if(iter.getPassedTest())
+        {
+            icon = ":/images/resources/green_check.png";
+            status = "pass";
+        } else {
+            icon = ":/images/resources/red_cancel.png";
+            status = "fail";
+        }
+
+        auto passStatus = new QTableWidgetItem(QIcon(icon), status);
         ui->testResults->setItem(row, 1, passStatus);
 
         if(iter.getPassedTest() == true) totalPassed++;
@@ -117,6 +128,7 @@ void main_window::on_actionSave_and_Close_triggered()
 {
     this->statusBar()->showMessage("Saving...", 2000);
     this->suite->serialize();
+    exit(0);
 }
 
 void main_window::on_actionChange_Executable_Path_triggered()
@@ -130,4 +142,15 @@ void main_window::on_actionChange_Executable_Path_triggered()
     } while(okFile == false);
 
     this->suite->setPath_to_exe(newPath);
+}
+
+void main_window::on_testResults_cellDoubleClicked(int row, int column)
+{
+    Test requestedTest = this->suite->getTestAt(this->ui->testResults->item(row, 0)->text());
+
+    this->ui->answerEdit->setText(requestedTest.getAnswer());
+    this->ui->stdoutEdit->setText(requestedTest.getStd_out());
+
+    this->ui->editTestPane->setCurrentIndex(3);
+
 }

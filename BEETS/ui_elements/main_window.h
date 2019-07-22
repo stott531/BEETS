@@ -3,9 +3,9 @@
 
 #include <QMainWindow>
 #include "testingSuite/testSuite.h"
-#include "welcome_window.h"
 #include <QListWidgetItem>
 #include <QInputDialog>
+#include <QThread>
 
 namespace Ui {
 class main_window;
@@ -39,6 +39,8 @@ private slots:
 
     void on_actionChange_Executable_Path_triggered();
 
+    void on_testResults_cellDoubleClicked(int row, int column);
+
 private:
     Ui::main_window *ui;
 
@@ -47,6 +49,9 @@ private:
 
     //test which we are currently editing
     Test currentTest;
+
+    //thread to run tests on
+    QThread testThread;
 };
 
 #endif // MAIN_WINDOW_H

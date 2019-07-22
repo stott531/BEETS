@@ -16,6 +16,8 @@
 
 class Test {
 public:
+    friend class testSuite;
+
     //constructs from initializations
     Test(const QString &name, const QString &cmdLineArgs, const QString &stdIn, const QString &stdOut, const QString &answer);
 
@@ -29,15 +31,18 @@ public:
     const QString& getStd_in() const;
     const QString& getStd_out() const;
     const QString& getAnswer() const;
+
+    void set_path(const QString& path);
     bool getPassedTest() const;
 
     //runs the test
-    void runTest(QString path);
+    int runTest();
 
 
 private:
     QString name, cmd_line_args, std_in, std_out, answer;
     bool passedTest;
+    QString path_to_exe;
 };
 
 
