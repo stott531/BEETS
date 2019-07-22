@@ -56,17 +56,14 @@ testSuite::testSuite(const QString& test_name)
 
 void testSuite::run_tests()
 {
-    for (auto& iter : this->tests.values())
+    for (const auto& iter : this->tests.keys())
     {
-        iter.set_path(this->path_to_exe);
+        this->tests[iter].set_path(this->path_to_exe);
+        auto future = QtConcurrent::run([&] () -> void {
+                                            this->tests[iter].runTest();
+                                        });
+        future.waitForFinished();
     }
-
-    auto func = [] (Test t) -> void {t.runTest();};
-
-    QFuture<void> future = QtConcurrent::map(this->tests.values().begin(),
-                                             this->tests.values().end(),
-                                             func
-                                             );
 }
 
 void testSuite::serialize()

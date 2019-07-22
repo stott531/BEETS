@@ -5,15 +5,15 @@
 ###############################TODO###############################
 GUI
 	Add a stop button for the tests
-	Add feature to view input and output of a test
-		when double clicked
-	Stdin box is not being cleared
-	
+
 
 Back-End
 	Implement exceptions for cases of timeout, file not
 		found, etc.
-	Run tests on seperate thread so that GUI doesn't freeze
-	Save and close isn't closing
+
+Known Bugs
+	Empty test case creation
+	Setting new path infinite loop
+	
 
 Configure Unit Testing

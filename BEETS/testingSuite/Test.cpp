@@ -71,7 +71,7 @@ int Test::runTest()
     testProcess->waitForReadyRead();
     this->std_out = testProcess->readAllStandardOutput();
 
-    //learn how ternary operators
+    //learn how ternary operators work
     this->std_out == this->answer ? passedTest = true: passedTest = false;
 
     return 0;

@@ -1,6 +1,18 @@
 {
+    "causeSegFault": [
+        "",
+        "foo",
+        "",
+        "bar"
+    ],
     "name": "example",
     "path_to_exe": "/home/stott/Programming/BEETS/exampleProgram/cmake-build-debug/exampleProgram",
+    "shouldBeFalse": [
+        "circle",
+        "34",
+        "",
+        "1"
+    ],
     "test1": [
         "circle",
         "5",

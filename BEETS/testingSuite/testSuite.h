@@ -12,7 +12,7 @@
 #include <QJsonDocument>
 #include <memory>
 #include <QMessageBox>
-#include <QtConcurrent/QtConcurrentMap>
+#include <QtConcurrentRun>
 #include <functional>
 
 
