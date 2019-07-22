@@ -133,10 +133,11 @@ void main_window::on_actionSave_and_Close_triggered()
 
 void main_window::on_actionChange_Executable_Path_triggered()
 {
-    bool okFile = false;
+    bool okFile = false, cancelPushed = false;
     QString newPath;
     do {
-        newPath = QInputDialog::getText(this, "Change Path", "New Path:");
+        newPath = QInputDialog::getText(this, "Change Path", "New Path:", QLineEdit::Normal, QString(), &cancelPushed);
+        if (cancelPushed == false) return;
         QFile::exists(newPath) ? okFile = true : QMessageBox::critical(this, "File Not Found", "Please check your path and try again");
 
     } while(okFile == false);
