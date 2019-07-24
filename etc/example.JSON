@@ -2,27 +2,27 @@
     "causeSegFault": [
         "",
         "foo",
-        "",
+        "Invalid input \n",
         "bar"
+    ],
+    "circleTest": [
+        "circle",
+        "5",
+        "15.708",
+        "15.708"
     ],
     "name": "example",
     "path_to_exe": "/home/stott/Programming/BEETS/exampleProgram/cmake-build-debug/exampleProgram",
     "shouldBeFalse": [
         "circle",
         "34",
-        "",
+        "106.814",
         "1"
-    ],
-    "test1": [
-        "circle",
-        "5",
-        "",
-        "15.708"
     ],
     "test2": [
         "square",
         "5",
-        "",
+        "25",
         "25"
     ]
 }

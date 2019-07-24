@@ -82,7 +82,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="Welcome"/>
       <widget class="QWidget" name="editTest">
@@ -300,6 +300,9 @@ Arguments</string>
            </item>
            <item>
             <widget class="QCommandLinkButton" name="saveTest_4">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Save Test</string>
              </property>

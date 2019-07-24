@@ -58,16 +58,15 @@ void main_window::on_deleteTest_clicked()
 
 void main_window::on_saveTest_clicked()
 {
-    auto name = ui->nameLineEdit->text();
-    suite->removeTest(name);
-    suite->updateTest(name, Test(name,
+    suite->removeTest(this->currentTest.getName());
+    suite->updateTest(ui->nameLineEdit->text(), Test(ui->nameLineEdit->text(),
                                  ui->cmd_lin_argsLineEdit->text(),
                                  ui->stdinLineEdit->text(),
                                  "",
                                  ui->answerLineEdit->text()));
 
     ui->testList->takeItem(ui->testList->currentRow());
-    ui->testList->addItem(name);
+    ui->testList->addItem(ui->nameLineEdit->text());
     ui->editTestPane->setCurrentWidget(ui->Welcome);
 }
 
@@ -154,4 +153,8 @@ void main_window::on_testResults_cellDoubleClicked(int row, int column)
 
     this->ui->editTestPane->setCurrentIndex(3);
 
+}
+void main_window::on_nameLineEdit_4_editingFinished()
+{
+    this->ui->saveTest_4->setEnabled(true);
 }

@@ -4,16 +4,11 @@
 
 ###############################TODO###############################
 GUI
-	Add a stop button for the tests
-
+	Add a stop button for the tests (Not possible at this time)
 
 Back-End
-	Implement exceptions for cases of timeout, file not
-		found, etc.
-
+	
 Known Bugs
 	Empty test case creation
-	Setting new path infinite loop
 	
-
 Configure Unit Testing
