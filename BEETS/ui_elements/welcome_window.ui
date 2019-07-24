@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Welcome to BEETS</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/resources/beet.png</normaloff>:/images/resources/beet.png</iconset>
+  </property>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
@@ -24,6 +28,9 @@
    </property>
    <property name="styleSheet">
     <string notr="true"/>
+   </property>
+   <property name="currentIndex">
+    <number>2</number>
    </property>
    <widget class="QWidget" name="welcome">
     <widget class="QWidget" name="verticalLayoutWidget">
@@ -165,9 +172,6 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="QLineEdit" name="name"/>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_4">
         <property name="text">
@@ -177,6 +181,20 @@
       </item>
       <item row="1" column="1">
        <widget class="QLineEdit" name="source_exe"/>
+      </item>
+      <item row="0" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QLineEdit" name="name"/>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolButton">
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>
@@ -209,6 +227,8 @@
    </widget>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

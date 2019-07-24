@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>956</width>
+    <width>1114</width>
     <height>480</height>
    </rect>
   </property>
@@ -17,10 +17,20 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Basic End to End Testing Software</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/images/resources/beet.png</normaloff>:/images/resources/beet.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Rounded</enum>
+  </property>
+  <property name="unifiedTitleAndToolBarOnMac">
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="sizePolicy">
@@ -43,6 +53,10 @@
         <widget class="QCommandLinkButton" name="createTest">
          <property name="text">
           <string>Create New Test</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/resources/save_as.png</normaloff>:/images/resources/save_as.png</iconset>
          </property>
         </widget>
        </item>
@@ -68,7 +82,7 @@
        </sizepolicy>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="Welcome"/>
       <widget class="QWidget" name="editTest">
@@ -122,28 +136,22 @@ Arguments</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="1">
-           <widget class="QLineEdit" name="stdinLineEdit"/>
-          </item>
           <item row="4" column="0">
-           <widget class="QLabel" name="stdoutLabel">
-            <property name="text">
-             <string>Stdout</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="stdoutLineEdit"/>
-          </item>
-          <item row="5" column="0">
            <widget class="QLabel" name="answerLabel">
             <property name="text">
              <string>Answer</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
+          <item row="4" column="1">
            <widget class="QLineEdit" name="answerLineEdit"/>
+          </item>
+          <item row="3" column="1">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLineEdit" name="stdinLineEdit"/>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
@@ -161,6 +169,10 @@ Arguments</string>
              <property name="text">
               <string>Delete Test</string>
              </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/images/resources/red_cancel.png</normaloff>:/images/resources/red_cancel.png</iconset>
+             </property>
             </widget>
            </item>
            <item>
@@ -173,6 +185,16 @@ Arguments</string>
              </property>
              <property name="text">
               <string>Save Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/images/resources/save_as.png</normaloff>:/images/resources/save_as.png</iconset>
+             </property>
+             <property name="iconSize">
+              <size>
+               <width>25</width>
+               <height>25</height>
+              </size>
              </property>
             </widget>
            </item>
@@ -249,23 +271,13 @@ Arguments</string>
            <widget class="QLineEdit" name="stdinLineEdit_4"/>
           </item>
           <item row="4" column="0">
-           <widget class="QLabel" name="stdoutLabel_4">
-            <property name="text">
-             <string>Stdout</string>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLineEdit" name="stdoutLineEdit_4"/>
-          </item>
-          <item row="5" column="0">
            <widget class="QLabel" name="answerLabel_4">
             <property name="text">
              <string>Answer</string>
             </property>
            </widget>
           </item>
-          <item row="5" column="1">
+          <item row="4" column="1">
            <widget class="QLineEdit" name="answerLineEdit_4"/>
           </item>
          </layout>
@@ -288,8 +300,15 @@ Arguments</string>
            </item>
            <item>
             <widget class="QCommandLinkButton" name="saveTest_4">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Save Test</string>
+             </property>
+             <property name="icon">
+              <iconset resource="resources.qrc">
+               <normaloff>:/images/resources/save_as.png</normaloff>:/images/resources/save_as.png</iconset>
              </property>
             </widget>
            </item>
@@ -305,6 +324,60 @@ Arguments</string>
            <size>
             <width>20</width>
             <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="showTestResult">
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Expected Output</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QTextEdit" name="answerEdit">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QTextEdit" name="stdoutEdit">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Actual Output</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <spacer name="verticalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>20</height>
            </size>
           </property>
          </spacer>
@@ -327,10 +400,26 @@ Arguments</string>
          <property name="text">
           <string>Run Tests</string>
          </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/images/resources/green_arrow.png</normaloff>:/images/resources/green_arrow.png</iconset>
+         </property>
         </widget>
        </item>
        <item>
-        <widget class="QTableWidget" name="testResults"/>
+        <widget class="QTableWidget" name="testResults">
+         <property name="editTriggers">
+          <set>QAbstractItemView::NoEditTriggers</set>
+         </property>
+         <property name="cornerButtonEnabled">
+          <bool>false</bool>
+         </property>
+         <property name="columnCount">
+          <number>2</number>
+         </property>
+         <column/>
+         <column/>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -342,7 +431,7 @@ Arguments</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>956</width>
+     <width>1114</width>
      <height>22</height>
     </rect>
    </property>
@@ -363,6 +452,8 @@ Arguments</string>
     <property name="title">
      <string>Settings</string>
     </property>
+    <addaction name="separator"/>
+    <addaction name="actionChange_Executable_Path"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
@@ -400,7 +491,14 @@ Arguments</string>
     <string>Open Other Test Suite</string>
    </property>
   </action>
+  <action name="actionChange_Executable_Path">
+   <property name="text">
+    <string>Change Executable Path</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

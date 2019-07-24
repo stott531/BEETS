@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += concurrent
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -28,17 +29,17 @@ SOURCES += \
         main.cpp \
         testingSuite/Test.cpp \
         testingSuite/testSuite.cpp \
-    ui_elements/main_window.cpp \
+        ui_elements/main_window.cpp \
         ui_elements/welcome_window.cpp \
 
 HEADERS += \
         testingSuite/Test.h \
         testingSuite/testSuite.h \
-    ui_elements/main_window.h \
+        ui_elements/main_window.h \
         ui_elements/welcome_window.h \
 
 FORMS += \
-    ui_elements/main_window.ui \
+        ui_elements/main_window.ui \
         ui_elements/welcome_window.ui \
 
 
@@ -46,3 +47,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    ui_elements/resources.qrc

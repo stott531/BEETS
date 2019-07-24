@@ -7,7 +7,7 @@
 testSuite::testSuite(const QString &name, const QString &pathToExe) : name(name), path_to_exe(pathToExe)
 {
     //initialize an empty map
-    this->tests = QMap<QString, TestingClass>();
+    this->tests = QMap<QString, Test>();
 }
 
 testSuite::testSuite(const QString& test_name)
@@ -56,8 +56,13 @@ testSuite::testSuite(const QString& test_name)
 
 void testSuite::run_tests()
 {
-    for(auto& iter : this->tests.keys()) {
-        this->tests[iter].runTest(this->path_to_exe);
+    for (const auto& iter : this->tests.keys())
+    {
+        this->tests[iter].set_path(this->path_to_exe);
+        auto future = QtConcurrent::run([&] () -> void {
+                                            this->tests[iter].runTest();
+                                        });
+        future.waitForFinished();
     }
 }
 
@@ -98,6 +103,18 @@ void testSuite::updateTest(const QString &name, const Test &newTest)
     this->tests[name] = newTest;
 }
 
-const QMap<QString, TestingClass>& testSuite::getTestMap() const{
+const QMap<QString, Test>& testSuite::getTestMap() const
+{
     return this->tests;
+}
+
+void testSuite::setPath_to_exe(const QString& newPath)
+{
+    this->path_to_exe = newPath;
+}
+
+
+Test testSuite::getTestAt(const QString& requestedTest)
+{
+    return this->tests[requestedTest];
 }

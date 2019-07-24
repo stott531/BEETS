@@ -1,6 +1,5 @@
 #include "welcome_window.h"
 #include "ui_welcome_window.h"
-#include <QDir>
 #include "testingSuite/testSuite.h"
 
 welcome_window::welcome_window(QWidget *parent) :
@@ -13,6 +12,8 @@ welcome_window::welcome_window(QWidget *parent) :
     files.replaceInStrings(".JSON","");
     ui->comboBox->addItems(files);
     ui->comboBox_2->addItems(files);
+
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 welcome_window::~welcome_window()
@@ -47,6 +48,11 @@ void welcome_window::on_continue_2_clicked()
 
 void welcome_window::on_save_cont_clicked()
 {   
+    if(!QFile::exists(ui->source_exe->text()))
+    {
+        QMessageBox::critical(this, "File Not Found", "Please check your path and try again");
+        return;
+    }
     auto suite = std::make_unique<testSuite>(ui->name->text(), ui->source_exe->text());
     main_window* w = new main_window(nullptr, std::move(suite));
     this->close();
@@ -56,4 +62,10 @@ void welcome_window::on_save_cont_clicked()
 void welcome_window::on_exit_clicked()
 {
     exit(0);
+}
+
+void welcome_window::on_toolButton_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, "Target Executable");
+    this->ui->source_exe->setText(fileName);
 }

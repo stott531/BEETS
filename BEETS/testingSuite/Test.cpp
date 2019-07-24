@@ -4,8 +4,8 @@
 
 #include "Test.h"
 
-Test::Test(const QString &name, const QString &cmdLineArgs, const QString &stdIn, const QString &answer)
-        : name(name), cmd_line_args(cmdLineArgs), std_in(stdIn), answer(answer)
+Test::Test(const QString &name, const QString &cmdLineArgs, const QString &stdIn, const QString &stdOut, const QString &answer)
+        : name(name), cmd_line_args(cmdLineArgs), std_in(stdIn), std_out(""), answer(answer)
 {
 
 }
@@ -40,6 +40,11 @@ bool Test::getPassedTest() const
     return this->passedTest;
 }
 
+void Test::set_path(const QString& path)
+{
+    this->path_to_exe = path;
+}
+
 QJsonValue Test::toJsonValue()
 {
     QStringList members;
@@ -48,14 +53,14 @@ QJsonValue Test::toJsonValue()
     return QJsonValue(arr);
 }
 
-void Test::runTest(QString path)
+int Test::runTest()
 {
     //create a new process
     auto testProcess = new QProcess();
     testProcess->setReadChannelMode(QProcess::SeparateChannels);
 
     //start the process with the given arguments
-    testProcess->start(path, cmd_line_args.split(' '));
+    testProcess->start(this->path_to_exe, cmd_line_args.split(' '));
 
     //wait for program to be ready to accept stdin
     QApplication::processEvents();
@@ -66,6 +71,8 @@ void Test::runTest(QString path)
     testProcess->waitForReadyRead();
     this->std_out = testProcess->readAllStandardOutput();
 
-    //learn how ternary operators
+    //learn how ternary operators work
     this->std_out == this->answer ? passedTest = true: passedTest = false;
+
+    return 0;
 }

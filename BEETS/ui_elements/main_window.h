@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include "testingSuite/testSuite.h"
 #include <QListWidgetItem>
+#include <QInputDialog>
+#include <QThread>
 
 namespace Ui {
 class main_window;
@@ -35,6 +37,14 @@ private slots:
 
     void on_actionSave_and_Close_triggered();
 
+    void on_actionChange_Executable_Path_triggered();
+
+    void on_testResults_cellDoubleClicked(int row, int column);
+
+    void on_nameLineEdit_textChanged(const QString &arg1);
+
+    void on_nameLineEdit_4_editingFinished();
+
 private:
     Ui::main_window *ui;
 
@@ -43,6 +53,7 @@ private:
 
     //test which we are currently editing
     Test currentTest;
+
 };
 
 #endif // MAIN_WINDOW_H
