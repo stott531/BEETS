@@ -13,7 +13,9 @@ testSuite::testSuite(const QString &name, const QString &pathToExe) : name(name)
 testSuite::testSuite(const QString& test_name)
 {
     //makes this more usable
-    QString fileName = "../etc/" + test_name + ".JSON";
+
+    //extra ../ added for testing purposes
+    QString fileName = "../../etc/" + test_name + ".JSON";
 
     //opens the file
     QFile json_file(fileName);
@@ -81,7 +83,9 @@ void testSuite::serialize()
 
     //create file, writet the JSON to the file, and close
     QJsonDocument file(json);
-    QString fileName ="../etc/" + this->name + ".JSON";
+
+    //extra ../ added for running unit tests
+    QString fileName ="../../etc/" + this->name + ".JSON";
     QFile newFile(fileName);
     newFile.open(QIODevice::WriteOnly);
     newFile.write(file.toJson());
@@ -108,6 +112,12 @@ const QMap<QString, Test>& testSuite::getTestMap() const
     return this->tests;
 }
 
+
+const QString testSuite::getName() const
+{
+    return this->name;
+}
+
 void testSuite::setPath_to_exe(const QString& newPath)
 {
     this->path_to_exe = newPath;
@@ -117,4 +127,10 @@ void testSuite::setPath_to_exe(const QString& newPath)
 Test testSuite::getTestAt(const QString& requestedTest)
 {
     return this->tests[requestedTest];
+}
+
+bool testSuite::operator==(const testSuite& rhs) const
+{
+    return this->name == rhs.name && this->path_to_exe == rhs.path_to_exe && this->tests == rhs.tests;
+
 }

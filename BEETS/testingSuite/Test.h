@@ -34,6 +34,7 @@ public:
 
     void set_path(const QString& path);
     bool getPassedTest() const;
+    bool operator==(const Test& rhs) const;
 
     //runs the test
     int runTest();

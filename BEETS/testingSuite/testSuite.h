@@ -25,6 +25,8 @@ public:
     //construct from a JSON file
     testSuite(const QString& fileName);
 
+    testSuite() = default;
+
     //runs all tests in the suite
     void run_tests();
 
@@ -43,6 +45,9 @@ public:
     //get the testing map
     const QMap<QString, Test>& getTestMap() const;
 
+    //get the name
+    const QString getName() const;
+
     //set the executble path
     void setPath_to_exe(const QString& newPath);
 
@@ -50,6 +55,7 @@ public:
 
     Test getTestAt(const QString& requestedTest);
 
+    bool operator==(const testSuite& rhs) const;
 
 
 private:
