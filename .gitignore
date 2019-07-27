@@ -2,4 +2,5 @@ build/*
 cmake-build-debug
 exampleProgram/.idea
 BEETS/BEETS.pro.user
-
+BEETS/unit_tests/
+unit_testing/
