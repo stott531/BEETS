@@ -80,7 +80,9 @@ int Test::runTest()
 
 bool Test::operator==(const Test& rhs) const
 {
-    return this->name == rhs.name && this->answer == rhs.answer
-            && this->std_in == rhs.std_in && this->std_out == rhs.std_out
-            && this->cmd_line_args == rhs.cmd_line_args;
+    return this->name == rhs.name &&
+            this->answer == rhs.answer &&
+            this->std_in == rhs.std_in &&
+            this->std_out == rhs.std_out &&
+            this->cmd_line_args == rhs.cmd_line_args;
 }

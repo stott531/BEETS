@@ -21,8 +21,10 @@ public:
     //constructs from initializations
     Test(const QString &name, const QString &cmdLineArgs, const QString &stdIn, const QString &stdOut, const QString &answer);
 
+    //convert the test to a JSON value
     QJsonValue toJsonValue();
 
+    //empty constructor
     Test() = default;
 
     //getters
@@ -31,9 +33,12 @@ public:
     const QString& getStd_in() const;
     const QString& getStd_out() const;
     const QString& getAnswer() const;
-
-    void set_path(const QString& path);
     bool getPassedTest() const;
+
+    //set the path
+    void set_path(const QString& path);
+
+    //comparison operator for testing purposes
     bool operator==(const Test& rhs) const;
 
     //runs the test
@@ -41,9 +46,13 @@ public:
 
 
 private:
-    QString name, cmd_line_args, std_in, std_out, answer;
-    bool passedTest;
+    QString name;
+    QString cmd_line_args;
+    QString std_in;
+    QString std_out;
+    QString answer;
     QString path_to_exe;
+    bool passedTest;
 };
 
 

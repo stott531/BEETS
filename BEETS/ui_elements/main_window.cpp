@@ -6,14 +6,22 @@ main_window::main_window(QWidget *parent, std::unique_ptr<testSuite> p_suite) :
     ui(new Ui::main_window),
     suite(std::move(p_suite))
 {
-    ui->setupUi(this);
+    this->ui->setupUi(this);
+
+    //add each test in the suite to the list of availible tests
     for(const auto& iter : suite->getTestMap().keys())
     {
-        ui->testList->addItem(iter);
+        this->ui->testList->addItem(iter);
     }
-    ui->editTestPane->setCurrentWidget(ui->Welcome);
-    ui->testResults->setHorizontalHeaderLabels(QStringList() << "Test" << "Result");
-    ui->testResults->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+    //set the editPane to the empty welcome widget
+    this->ui->editTestPane->setCurrentWidget(ui->Welcome);
+
+    //add headers to the results table
+    this->ui->testResults->setHorizontalHeaderLabels(QStringList() << "Test" << "Result");
+
+    //sets the table to size to the layout it is placed in
+    this->ui->testResults->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 main_window::~main_window()
@@ -36,7 +44,7 @@ void main_window::on_createTest_clicked()
 void main_window::on_testList_itemDoubleClicked(QListWidgetItem *item)
 {
     //get the double clicked test
-    this->currentTest = suite->getTestMap()[item->text()];
+    this->currentTest = this->suite->getTestAt(item->text());
     this->ui->testList->setCurrentItem(item);
 
     //set each text box to the Test's valuet
@@ -51,27 +59,41 @@ void main_window::on_testList_itemDoubleClicked(QListWidgetItem *item)
 
 void main_window::on_deleteTest_clicked()
 {
+    //remove item from internal map
     suite->removeTest(this->currentTest.getName());
+
+    //remove the test from the selection
     ui->testList->takeItem(ui->testList->currentRow());
+
+    //show the empty widget
     ui->editTestPane->setCurrentWidget(ui->Welcome);
 }
 
 void main_window::on_saveTest_clicked()
 {
+    //old test must be removed since we have to modify the key
     suite->removeTest(this->currentTest.getName());
-    suite->updateTest(ui->nameLineEdit->text(), Test(ui->nameLineEdit->text(),
-                                 ui->cmd_lin_argsLineEdit->text(),
-                                 ui->stdinLineEdit->text(),
-                                 "",
-                                 ui->answerLineEdit->text()));
 
+    //add the test with the new info to the suite
+    suite->updateTest(ui->nameLineEdit->text(), Test(ui->nameLineEdit->text(),
+                                                     ui->cmd_lin_argsLineEdit->text(),
+                                                     ui->stdinLineEdit->text(),
+                                                     "",
+                                                     ui->answerLineEdit->text()));
+
+    //remove old test from display
     ui->testList->takeItem(ui->testList->currentRow());
+
+    //add new test to the display
     ui->testList->addItem(ui->nameLineEdit->text());
+
+    //go back to empty widget
     ui->editTestPane->setCurrentWidget(ui->Welcome);
 }
 
 void main_window::on_saveTest_4_clicked()
 {
+    //same as previous save button without removing anything
     suite->addTest(ui->nameLineEdit_4->text(), Test(ui->nameLineEdit_4->text(),
                                                      ui->cmd_lin_argsLineEdit_4->text(),
                                                      ui->stdinLineEdit_4->text(),

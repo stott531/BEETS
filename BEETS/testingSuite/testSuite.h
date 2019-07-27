@@ -51,10 +51,10 @@ public:
     //set the executble path
     void setPath_to_exe(const QString& newPath);
 
-    static void runTestStatic(QString path, Test curTest);
-
+    //returns the test specified by the name
     Test getTestAt(const QString& requestedTest);
 
+    //compares two tests; used for running unit tests
     bool operator==(const testSuite& rhs) const;
 
 

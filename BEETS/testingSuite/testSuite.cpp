@@ -57,12 +57,16 @@ testSuite::testSuite(const QString& test_name)
 
 void testSuite::run_tests()
 {
+    //for each test in the suite...
     for (const auto& iter : this->tests.keys())
     {
+        //set the path to the executable
         this->tests[iter].set_path(this->path_to_exe);
-        auto future = QtConcurrent::run([&] () -> void {
-                                            this->tests[iter].runTest();
-                                        });
+
+        //runs the test on a seperate thread
+        auto future = QtConcurrent::run([&] () -> void {this->tests[iter].runTest();});
+
+        //wait for the test to finish before moving on
         future.waitForFinished();
     }
 }
@@ -130,6 +134,8 @@ Test testSuite::getTestAt(const QString& requestedTest)
 
 bool testSuite::operator==(const testSuite& rhs) const
 {
-    return this->name == rhs.name && this->path_to_exe == rhs.path_to_exe && this->tests == rhs.tests;
+    return this->name == rhs.name &&
+            this->path_to_exe == rhs.path_to_exe &&
+            this->tests == rhs.tests;
 
 }
