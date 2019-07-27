@@ -13,7 +13,6 @@ testSuite::testSuite(const QString &name, const QString &pathToExe) : name(name)
 testSuite::testSuite(const QString& test_name)
 {
     //makes this more usable
-
     //extra ../ added for testing purposes
     QString fileName = "../../etc/" + test_name + ".JSON";
 

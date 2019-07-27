@@ -5,7 +5,7 @@
 #include "Test.h"
 
 Test::Test(const QString &name, const QString &cmdLineArgs, const QString &stdIn, const QString &stdOut, const QString &answer)
-        : name(name), cmd_line_args(cmdLineArgs), std_in(stdIn), std_out(""), answer(answer)
+        : name(name), cmd_line_args(cmdLineArgs), std_in(stdIn), std_out(""), answer(answer), passedTest(false)
 {
 
 }
